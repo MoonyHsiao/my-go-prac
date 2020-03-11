@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "ab0d8b2e-8133-48bc-9f02-aefdd48fcade",
+		"name": "demoApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clawer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/clawer",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"clawer"
+					],
+					"query": [
+						{
+							"key": "top",
+							"value": "3",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clawer/Country",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/clawer/country?region=EC",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"clawer",
+						"country"
+					],
+					"query": [
+						{
+							"key": "region",
+							"value": "EC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timeout_long",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/long",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"long"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "timeout_short",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/short",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"short"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
