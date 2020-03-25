@@ -12,4 +12,4 @@ http://localhost:8080/clawer/country ->Get 400 error
 
 or 
 
-use tomatoHW.postman_collection.json 
+use demoApi.postman_collection.json 
