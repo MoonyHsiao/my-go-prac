@@ -23,9 +23,10 @@ func main() {
 
 	v1.Use(middleware.TimeoutMiddleware(time.Second * 2))
 	{
-		v1.GET("/short", middleware.TimedHandler(time.Second))
-		v1.GET("/long", middleware.TimedHandler(time.Second*5))
-
+		// v1.GET("/short", middleware.TimedHandler(time.Second))
+		// v1.GET("/long", middleware.TimedHandler(time.Second*5))
+		v1.GET("/short", middleware.MyHandler)
+		v1.GET("/long", middleware.MyHandler)
 	}
 
 	route.Run(Port)

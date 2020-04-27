@@ -56,6 +56,34 @@ func TimedHandler(duration time.Duration) func(c *gin.Context) {
 	}
 }
 
+func MyHandler(c *gin.Context) {
+
+	ctx := c.Request.Context()
+	var param QureyParam
+	if c.Bind(&param) != nil {
+		c.String(http.StatusBadRequest, "fail")
+		return
+	}
+	doneChan := make(chan responseData)
+	duration := time.Second * time.Duration(param.Second)
+
+	timeoutRes := responseData{}
+	timeoutRes.status = http.StatusGatewayTimeout
+	timeoutRes.body = gin.H{"message": "timeout"}
+
+	go doSomeThing(duration, doneChan)
+
+	select {
+	case <-ctx.Done():
+		c.JSON(timeoutRes.status, timeoutRes.body)
+		return
+
+	case res := <-doneChan:
+		c.JSON(res.status, res.body)
+	}
+
+}
+
 func doSomeThing(duration time.Duration, doneChan chan responseData) {
 
 	time.Sleep(duration)
@@ -64,4 +92,8 @@ func doSomeThing(duration time.Duration, doneChan chan responseData) {
 		body:   gin.H{"message": "hello world"},
 	}
 
+}
+
+type QureyParam struct {
+	Second int
 }
